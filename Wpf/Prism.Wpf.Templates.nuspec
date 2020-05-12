@@ -15,6 +15,7 @@
   <files>
     <file src="BlankCoreApp/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
     <file src="BlankApp/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
+    <file src="FullApp/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
     <file src="ModuleCore/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
     <file src="Module.Wpf/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
   </files>
