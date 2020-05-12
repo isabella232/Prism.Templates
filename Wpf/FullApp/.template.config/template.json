@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Brian Lagunas",
+  "classifications": [ "Prism", "WPF" ],
+  "name": "Prism Full App (.NET Core 3)",
+  "identity": "Prism.Wpf.Full.Core.CSharp", // Unique name for this template
+  "groupIdentity": "Prism.Wpf.Full.Core",
+  "shortName": "wpf-core-full", // Short name that can be used on the cli
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "FullApp",
+  "preferNameDirectory": true,
+  "guids": [
+    "{91ADA3E8-CFC0-41E4-93C6-087587ADEBAF}",
+    "{A7064FCB-3CC3-400D-A48B-42E940C92F62}",
+    "{B1D6C7F2-3DAC-4D07-A8E0-E4902220BE1C}",
+    "{FFA262E0-1DA5-4D9F-B969-CA4C8BE11957}",
+    "{E6091E69-AC8B-4F55-8733-D29805295144}",
+    "{C3EEED74-7995-4C6E-98C4-D5062A594591}",
+    "{7FBCC478-BC26-4D6D-AF86-2582C244F6E2}",
+    "{57183F9E-F7CE-4342-B3F2-0997AD2D5900}",
+    "{BD90AA41-3090-45B8-81A8-DFF1258B2384}",
+    "{50B8A8DF-24C5-45A7-8DD8-10E903DCDB10}"
+  ],
+  "symbols": {
+    "Container": {
+      "type": "parameter",
+      "dataType": "choice",
+      "defaultValue": "DryIoc",
+      "choices": [
+        {
+          "choice": "DryIoc",
+          "description": "Uses DryIoc as the Dependency Injection Container"
+        },
+        {
+          "choice": "Unity",
+          "description": "Uses Unity as the Dependency Injection Container"
+        }
+      ],
+      "description": "The Dependency Injection Container to use"
+    },
+    "DryIocContainer": {
+      "type": "computed",
+      "value": "(Container == \"DryIoc\")"
+    },
+    "UnityContainer": {
+      "type": "computed",
+      "value": "(Container == \"Unity\")"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "FullApp\\FullApp.csproj"
+    },
+    {
+      "path": "FullApp.Core\\FullApp.Core.csproj"
+    },
+    {
+      "path": "Modules\\FullApp.Modules.ModuleName\\FullApp.Modules.ModuleName.csproj"
+    },
+    {
+      "path": "Services\\FullApp.Services\\FullApp.Services.csproj"
+    },
+    {
+      "path": "Services\\FullApp.Services.Interfaces\\FullApp.Services.Interfaces.csproj"
+    },
+    {
+      "path": "Tests\\FullApp.Modules.ModuleName.Tests\\FullApp.Modules.ModuleName.Tests.csproj"
+    }
+  ]
+}
