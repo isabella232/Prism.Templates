@@ -5,8 +5,6 @@ using Android.Runtime;
 namespace BlankApp.Droid
 {
     [Application(
-        Label = "@string/app_name",
-        Icon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme"
         )]
     public class MainApplication : Application
