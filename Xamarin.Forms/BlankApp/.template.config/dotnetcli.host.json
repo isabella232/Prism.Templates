@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json.schemastore.org/dotnetcli.host",
+  "symbolInfo": {
+    "AppId": {
+      "longName": "app-id",
+      "shortName": "id"
+    },
+    "CreateAndroidProject": {
+      "longName": "include-android",
+      "shortName": "android"
+    },
+    "CreateiOSProject": {
+      "longName": "include-ios",
+      "shortName": "ios"
+    },
+    "CreateUWPProject": {
+      "longName": "include-uwp",
+      "shortName": "uwp"
+    },
+    "Container": {
+      "longName": "container",
+      "shortName": "c"
+    },
+    "MinimumAndroidTarget": {
+      "longName": "minimum-android-target",
+      "shortName": "min-droid"
+    }
+  },
+  "usageExamples": [
+    "-id com.contoso.awesomeapp -include-uwp false",
+    "-id com.contoso.awesomeapp -include-uwp false -c Unity"
+  ]
+}

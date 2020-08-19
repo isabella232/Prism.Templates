@@ -129,6 +129,11 @@
         {
           "condition": "(!CreateUWPProject)",
           "exclude": [ "BlankApp/BlankApp.UWP/**/*" ]
+        },
+        {
+          "rename": {
+            "editorconfig": ".editorconfig"
+          }
         }
       ]
     }
