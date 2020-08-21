@@ -1,11 +1,31 @@
-param ($TemplatePackRoot, $ScriptRoot)
+param (
+    [string]$TemplatePackRoot = '.',
+    [string]$Version = '1.0.0'
+    )
 
-try 
+try
 {
+    function Get-ScriptDirectory {
+        Split-Path -parent $PSCommandPath
+    }
+
+    Write-Host "Execution Path"
+    $ScriptRoot = Get-ScriptDirectory
+    Write-Host $ScriptRoot
+
     Write-Host "Begin Project Templates Nuget pack ..."
 
-    $nugetOutputDirectory = "$($TemplatePackRoot)\Templates"
-    $nugetFileName = "$($ScriptRoot)\nuget.exe"
+    $tempPath = Join-Path $TemplatePackRoot -ChildPath "Templates"
+    New-Item -ItemType Directory -Force -Path $tempPath
+    $nugetOutputDirectory = Resolve-Path -Path $tempPath
+    $nugetFileName = Join-Path $ScriptRoot -ChildPath "nuget.exe"
+
+    $wpfRootPath = Join-Path $ScriptRoot -ChildPath "Wpf"
+    $formsRootPath = Join-Path $ScriptRoot -ChildPath "Xamarin.Forms"
+    $iconPath = Join-Path $ScriptRoot -ChildPath "prism-logo.png"
+    $licensePath = Join-Path $ScriptRoot -ChildPath "LICENSE.txt"
+
+    Write-Host "NuGet Output Path set to: $nugetOutputDirectory"
 
     if (!(Test-Path $nugetFileName))
     {
@@ -14,17 +34,33 @@ try
         Write-Host "Downloading Nuget.exe complete"
     }
 
-    $wpfNuspecPath = "$($ScriptRoot)\Wpf\Prism.Wpf.Templates.nuspec"
-    $xfNuspecPath = "$($ScriptRoot)\Xamarin.Forms\Prism.Xamarin.Forms.Templates.nuspec"
+    if(!(Test-Path $iconPath))
+    {
+        Write-Host "Downloading Prism Logo"
+        Invoke-WebRequest -Uri "https://github.com/PrismLibrary/Prism/blob/master/images/prism-logo.png?raw=1" -OutFile $iconPath
+        Write-Host "Finished downloading Prism Logo"
+    }
 
-    Invoke-Expression "$($nugetFileName) pack $($wpfNuspecPath) -OutputDirectory $($nugetOutputDirectory)" 
+    if(!(Test-Path $licensePath))
+    {
+        Write-Host "Downloading Prism License File"
+        Invoke-WebRequest -Uri "https://github.com/PrismLibrary/Prism/blob/master/LICENSE?raw=1" -OutFile $licensePath
+        Write-Host "Finished downloading Prism License File"
+    }
 
-    Invoke-Expression "$($nugetFileName) pack $($xfNuspecPath) -OutputDirectory $($nugetOutputDirectory)" 
+    $wpfNuspecPath = Join-Path $wpfRootPath -ChildPath "Prism.Wpf.Templates.nuspec"
+    $xfNuspecPath = Join-Path $formsRootPath -ChildPath "Prism.Xamarin.Forms.Templates.nuspec"
+
+    $nugetHash = git rev-parse HEAD
+
+    Invoke-Expression "$nugetFileName pack $wpfNuspecPath -OutputDirectory $nugetOutputDirectory -Version $Version -properties commitId=$nugetHash"
+
+    Invoke-Expression "$nugetFileName pack $xfNuspecPath -OutputDirectory $nugetOutputDirectory -Version $Version -properties commitId=$nugetHash"
 
     Write-Host "Completed Project Templates Nuget pack ..."
 }
-catch 
+catch
 {
     Write-Host $ErrorMessage = $_.Exception.Message
-	exit 1
+    exit 1
 }
