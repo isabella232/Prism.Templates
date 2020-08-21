@@ -1,0 +1,56 @@
+name: 7.2.0.$(Build.BuildId)
+
+variables:
+- name: PackageVersion
+  value: 7.2.0.$(Build.BuildId)
+
+stages:
+- stage: pack
+  displayName: Pack Templates
+  jobs:
+  - job: NuGetPack
+    displayName: NuGet Pack
+    pool:
+      vmImage: windows-latest
+    workspace:
+      clean: all
+    steps:
+    - powershell: ./build.ps1 -TemplatePackRoot $(Build.ArtifactStagingDirectory) -Version $(PackageVersion)
+      displayName: 'Pack .NET Templates'
+
+    - publish: $(Build.ArtifactStagingDirectory)/Templates
+      artifact: templates
+      displayName: Publish Template Artifacts
+
+
+- stage: deploy
+  displayName: Deploy
+  jobs:
+  - deployment: myget
+    displayName: Deploy to MyGet
+    environment: MyGet
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: NuGetCommand@2
+            displayName: NuGet Push
+            inputs:
+              command: push
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: 'Prism-MyGet'
+  - deployment: nuget
+    displayName: Deploy to NuGet
+    environment: NuGet
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: NuGetCommand@2
+            displayName: NuGet Push
+            inputs:
+              command: push
+              packagesToPush: '$(Pipeline.Workspace)/**/*.nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: 'NuGet.org'
