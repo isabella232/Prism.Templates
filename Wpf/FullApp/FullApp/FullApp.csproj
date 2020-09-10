@@ -6,7 +6,8 @@
     <AssemblyName>FullApp</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Prism.DryIoc" Version="7.2.0.1422" />
+    <PackageReference Condition=" '$(Container)' == 'DryIoc' " Include="Prism.DryIoc" Version="7.2.0.1422" />
+    <PackageReference Condition=" '$(Container)' == 'Unity' " Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FullApp.Core\FullApp.Core.csproj" />
