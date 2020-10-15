@@ -22,6 +22,8 @@ try
 
     $wpfRootPath = Join-Path $ScriptRoot -ChildPath "Wpf"
     $formsRootPath = Join-Path $ScriptRoot -ChildPath "Xamarin.Forms"
+    $unoRootPath = Join-Path $ScriptRoot -ChildPath "Uno"
+
     $iconPath = Join-Path $ScriptRoot -ChildPath "prism-logo.png"
     $licensePath = Join-Path $ScriptRoot -ChildPath "LICENSE.txt"
 
@@ -50,12 +52,15 @@ try
 
     $wpfNuspecPath = Join-Path $wpfRootPath -ChildPath "Prism.Wpf.Templates.nuspec"
     $xfNuspecPath = Join-Path $formsRootPath -ChildPath "Prism.Xamarin.Forms.Templates.nuspec"
+    $unoNuspecPath = Join-Path $unoRootPath -ChildPath "Prism.Uno.Templates.nuspec"
 
     $nugetHash = git rev-parse HEAD
 
     Invoke-Expression "$nugetFileName pack $wpfNuspecPath -OutputDirectory $nugetOutputDirectory -Version $Version -properties commitId=$nugetHash"
 
     Invoke-Expression "$nugetFileName pack $xfNuspecPath -OutputDirectory $nugetOutputDirectory -Version $Version -properties commitId=$nugetHash"
+
+    Invoke-Expression "$nugetFileName pack $unoNuspecPath -OutputDirectory $nugetOutputDirectory -Version $Version -properties commitId=$nugetHash"
 
     Write-Host "Completed Project Templates Nuget pack ..."
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Prism.Uno.Templates</id>
+    <version>$version$</version>
+    <authors>Brian Lagunas,Dan Siegel</authors>
+    <description>Official Prism Library Templates for Uno apps. This includes a Blank and Full app template, along with a Module template.</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/PrismLibrary/Prism</projectUrl>
+    <license type="file">LICENSE.txt</license>
+    <icon>images\prism-logo.png</icon>
+    <repository type="git" url="https://github.com/PrismLibrary/Prism.Templates.git" commit="$commitId$" />
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+  </metadata>
+  <files>
+    <file src="../LICENSE.txt" target="" />
+    <file src="../prism-logo.png" target="images\" />
+    <file src="UnoBlankTemplate/**" exclude="**\.vs\**\*;**\bin\**\*;**\obj\**\*;**\*.user;**\*.lock.json;**\.DS_Store" target="content" />
+  </files>
+</package>
