@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Brian Lagunas",
+  "classifications": [ "Prism", "Xamarin", "Uno Platform", "WebAssembly", "iOS", "Android", "WinUI", "UWP" ],
+  "name": "Prism Blank App (Uno Platform)",
+  "identity": "Prism.Uno.Blank.CSharp", // Unique name for this template
+  "groupIdentity": "Prism.Uno.Blank",
+  "shortName": "uno-blank", // Short name that can be used on the cli
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "UnoBlankTemplate",
+  "preferNameDirectory": true,
+  "guids": [
+    "{6279c845-92f8-4333-ab99-3d213163593c}", //shared
+    "{F219901B-0664-414F-9FFF-F77F0B587FF3}", // Android
+    "{E789F029-8B45-45ED-8AFE-9F447F3DE7B9}", // iOS
+    "{534ABFB7-2C8D-4AE3-BFF0-63CC22386EEF}", // macOS
+    "{8CAF95F4-B634-4B34-88C0-90A9B4770C16}", // UWP
+    "{4AAD1503-A1AB-46D0-8C50-E5FD8D15F616}", // .wasm
+    "{8E51E1C0-D2A5-4680-8888-43B7224C6FC6}" // core
+  ],
+  "symbols": {
+    "windowsPublisherName": {
+      "type": "parameter",
+      "datatype": "text",
+      "replaces": "$XmlEscapedPublisherDistinguishedName$",
+      "description": "Provides the value to use for the Windows head publisher",
+      "defaultValue": "O=MyCompany"
+    },
+    "WebAssembly": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "true",
+      "description": "Enables the WebAssembly platform support project"
+    },
+    "UWP": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "true",
+      "description": "Enables the Windows platform support project"
+    },
+    "iOS": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "true",
+      "description": "Enables the iOS platform support project"
+    },
+    "Android": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "true",
+      "description": "Enables the Android platform support project"
+    },
+    "macOS": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "true",
+      "description": "Enables the macOS platform support project"
+    },
+    "vscodeWasm": {
+      "type": "parameter",
+      "dataType": "bool",
+      "defaultValue": "false",
+      "description": "Adds the Visual Studio Code Debugging support files for WebAssembly"
+    },
+    "Container": {
+      "type": "parameter",
+      "dataType": "choice",
+      "defaultValue": "DryIoc",
+      "choices": [
+        {
+          "choice": "DryIoc",
+          "description": "Uses DryIoc as the Dependency Injection Container"
+        },
+        {
+          "choice": "Unity",
+          "description": "Uses Unity as the Dependency Injection Container"
+        }
+      ],
+      "description": "The Dependency Injection Container to use"
+    },
+    "DryIocContainer": {
+      "type": "computed",
+      "value": "(Container == \"DryIoc\")"
+    },
+    "UnityContainer": {
+      "type": "computed",
+      "value": "(Container == \"Unity\")"
+    }
+  },
+  "primaryOutputs": [
+    {
+      "path": "UnoBlankTemplate.Shared\\UnoBlankTemplate.Shared.shproj"
+    },
+    {
+      "path": "UnoBlankTemplate.Core\\UnoBlankTemplate.Core.csproj"
+    },
+    {
+      "condition": "Android",
+      "path": "Platforms\\UnoBlankTemplate.Droid\\UnoBlankTemplate.Droid.csproj"
+    },
+    {
+      "condition": "iOS",
+      "path": "Platforms\\UnoBlankTemplate.iOS\\UnoBlankTemplate.iOS.csproj"
+    },
+    {
+      "condition": "UWP",
+      "path": "Platforms\\UnoBlankTemplate.UWP\\UnoBlankTemplate.Uwp.csproj"
+    },
+    {
+      "condition": "Wasm",
+      "path": "Platforms\\UnoBlankTemplate.Wasm\\UnoBlankTemplate.Wasm.csproj"
+    },
+    {
+      "condition": "macOS",
+      "path": "Platforms\\UnoBlankTemplate.macOS\\UnoBlankTemplate.macOS.csproj"
+    }
+  ],
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!Android)",
+          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.Android/**/*" ]
+        },
+        {
+          "condition": "(!iOS)",
+          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.iOS/**/*" ]
+        },
+        {
+          "condition": "(!UWP)",
+          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.UWP/**/*" ]
+        },
+        {
+          "condition": "(!WebAsembly)",
+          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.Wasm/**/*" ]
+        },
+        {
+          "condition": "(!macOS)",
+          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.macOS/**/*" ]
+        }
+      ]
+    }
+  ]
+}
