@@ -10,14 +10,10 @@
 			-->
       <Version>6.2.9</Version>
     </PackageReference>
-    <!--#if (Container == "Unity") -->
-    <PackageReference Include="Prism.Unity.Uno" Version="8.0.0.1850-pre" />
-    <!--#endif -->
-    <!--#if (Container == "DryIoc") -->
-    <PackageReference Include="Prism.DryIoc.Uno" Version="8.0.0.1850-pre" />
-    <!--#endif -->
+    <PackageReference Condition=" '$(Container)' == 'DryIoc' " Include="Prism.DryIoc.Uno" Version="8.0.0.1909" />
+    <PackageReference Condition=" '$(Container)' == 'Unity' " Include="Prism.Unity.Uno" Version="8.0.0.1909" />
     <PackageReference Include="Uno.Core" Version="2.0.0" />
-    <PackageReference Include="Uno.UI" Version="3.0.12" />
+    <PackageReference Include="Uno.UI" Version="3.0.17" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Filter" Version="1.1.1" />
   </ItemGroup>

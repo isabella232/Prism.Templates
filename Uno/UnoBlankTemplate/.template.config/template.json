@@ -59,12 +59,6 @@
       "defaultValue": "true",
       "description": "Enables the macOS platform support project"
     },
-    "vscodeWasm": {
-      "type": "parameter",
-      "dataType": "bool",
-      "defaultValue": "false",
-      "description": "Adds the Visual Studio Code Debugging support files for WebAssembly"
-    },
     "Container": {
       "type": "parameter",
       "dataType": "choice",
@@ -107,10 +101,10 @@
     },
     {
       "condition": "UWP",
-      "path": "Platforms\\UnoBlankTemplate.UWP\\UnoBlankTemplate.Uwp.csproj"
+      "path": "Platforms\\UnoBlankTemplate.UWP\\UnoBlankTemplate.UWP.csproj"
     },
     {
-      "condition": "Wasm",
+      "condition": "WebAssembly",
       "path": "Platforms\\UnoBlankTemplate.Wasm\\UnoBlankTemplate.Wasm.csproj"
     },
     {
@@ -123,23 +117,23 @@
       "modifiers": [
         {
           "condition": "(!Android)",
-          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.Android/**/*" ]
+          "exclude": [ "Platforms/BlankApp.Android/**/*" ]
         },
         {
           "condition": "(!iOS)",
-          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.iOS/**/*" ]
+          "exclude": [ "Platforms/BlankApp.iOS/**/*" ]
         },
         {
           "condition": "(!UWP)",
-          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.UWP/**/*" ]
+          "exclude": [ "Platforms/BlankApp.UWP/**/*" ]
         },
         {
           "condition": "(!WebAsembly)",
-          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.Wasm/**/*" ]
+          "exclude": [ "Platforms/BlankApp.Wasm/**/*" ]
         },
         {
           "condition": "(!macOS)",
-          "exclude": [ "UnoBlankTemplate/UnoBlankTemplate.macOS/**/*" ]
+          "exclude": [ "Platforms/BlankApp.macOS/**/*" ]
         }
       ]
     }

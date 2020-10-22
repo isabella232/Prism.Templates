@@ -5,7 +5,7 @@
     xmlns:local="using:UnoBlankTemplate.Shared.Views"
     xmlns:prismMvvm="using:Prism.Mvvm"
     xmlns:prismRegions="using:Prism.Regions"
-    prismMvvm:ViewModelLocator.AutoWireViewModel="True" >
+    prismMvvm:ViewModelLocator.AutowireViewModel="True" >
 
   <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid.RowDefinitions>
