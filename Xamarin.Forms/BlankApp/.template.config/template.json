@@ -26,20 +26,23 @@
       "defaultValue": "com.companyname.appname",
       "description": "Sets the iOS Bundle Id and the Android package Id <com.company.appname>"
     },
-    "CreateAndroidProject": {
+    "Android": {
       "type": "parameter",
       "dataType": "bool",
-      "defaultValue": "true"
+      "defaultValue": "true",
+      "description": "Enables the Android platform support project"
     },
-    "CreateiOSProject": {
+    "iOS": {
       "type": "parameter",
       "dataType": "bool",
-      "defaultValue": "true"
+      "defaultValue": "true",
+      "description": "Enables the iOS platform support project"
     },
-    "CreateUWPProject": {
+    "UWP": {
       "type": "parameter",
       "dataType": "bool",
-      "defaultValue": "true"
+      "defaultValue": "true",
+      "description": "Enables the Windows platform support project"
     },
     "Container": {
       "type": "parameter",
@@ -103,15 +106,15 @@
       "path": "BlankApp\\BlankApp.csproj"
     },
     {
-      "condition": "CreateAndroidProject",
+      "condition": "Android",
       "path": "BlankApp.Android\\BlankApp.Android.csproj"
     },
     {
-      "condition": "CreateiOSProject",
+      "condition": "iOS",
       "path": "BlankApp.iOS\\BlankApp.iOS.csproj"
     },
     {
-      "condition": "CreateUWPProject",
+      "condition": "UWP",
       "path": "BlankApp.UWP\\BlankApp.UWP.csproj"
     }
   ],
@@ -119,21 +122,16 @@
     {
       "modifiers": [
         {
-          "condition": "(!CreateAndroidProject)",
+          "condition": "(!Android)",
           "exclude": [ "BlankApp/BlankApp.Android/**/*" ]
         },
         {
-          "condition": "(!CreateiOSProject)",
+          "condition": "(!iOS)",
           "exclude": [ "BlankApp/BlankApp.iOS/**/*" ]
         },
         {
-          "condition": "(!CreateUWPProject)",
+          "condition": "(!UWP)",
           "exclude": [ "BlankApp/BlankApp.UWP/**/*" ]
-        },
-        {
-          "rename": {
-            "editorconfig": ".editorconfig"
-          }
         }
       ]
     }
