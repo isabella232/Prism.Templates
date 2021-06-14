@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Brian Lagunas",
-  "classifications": [ "Prism", "Xamairn", "Xamarin.Forms" ],
+  "classifications": [ "Prism", "Xamarin", "Xamarin.Forms" ],
   "name": "Prism Module (Xamarin)",
   "identity": "Prism.Xamarin.Forms.Module.CSharp", // Unique name for this template
   "groupIdentity": "Prism.Xamarin.Forms.Module",
